@@ -35,3 +35,6 @@ export default function Home() {
     </main>
   );
 }
+
+
+// aura 67
