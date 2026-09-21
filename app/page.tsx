@@ -4,6 +4,7 @@ import { GoalSection } from "@/components/goal-section";
 import { Header } from "@/components/header";
 import { HeroSection } from "@/components/hero-section";
 import { HowSection } from "@/components/how-section";
+import { MissionSection } from "@/components/mission-section";
 import { ProcessSection } from "@/components/process-section";
 import { StatsSection } from "@/components/stats-section";
 
@@ -13,6 +14,9 @@ export default function Home() {
       <Header />
       <div data-theme="dark">
         <HeroSection />
+      </div>
+      <div data-theme="light">
+        <MissionSection />
       </div>
       <div data-theme="dark">
         <StatsSection />

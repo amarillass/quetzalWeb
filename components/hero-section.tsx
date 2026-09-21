@@ -130,6 +130,8 @@ export function HeroSection() {
         >
           <motion.a
             href="https://forms.gle/nufxiVqQL84w6x3e6"
+            target="_blank"
+            rel="noopener noreferrer"
             className="group px-8 py-4 bg-main text-dark rounded-full text-lg font-bold shadow-lg shadow-main/20 transition-transform duration-300"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -140,13 +142,14 @@ export function HeroSection() {
             </span>
           </motion.a>
           
-          <motion.button
+          <motion.a
+            href="#stats"
             className="px-8 py-4 border-2 border-light/30 text-light rounded-full text-lg font-semibold backdrop-blur-sm hover:bg-light/10 transition-colors duration-300"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
             Nuestro Impacto
-          </motion.button>
+          </motion.a>
         </motion.div>
         
         <motion.div

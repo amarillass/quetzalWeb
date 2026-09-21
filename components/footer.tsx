@@ -30,6 +30,7 @@ export function Footer() {
               href="https://www.instagram.com/quetzal.lat/"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Quetzal Computers en Instagram"
                                   className="text-white hover:text-[#00977E] transition-colors"
             >
               <Instagram size={28} />

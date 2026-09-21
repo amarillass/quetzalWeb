@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export function MissionSection() {
   return (
-    <section id="mission" className="bg-gray-50 py-20">
+    <section id="mision" className="bg-gray-50 py-20">
       <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
         <motion.div
           initial={{ opacity: 0, x: -50 }}
@@ -25,6 +25,8 @@ export function MissionSection() {
           <div className="relative">
             <motion.a
               href="https://forms.gle/nufxiVqQL84w6x3e6"
+              target="_blank"
+              rel="noopener noreferrer"
                               className="inline-block bg-[#00977E] hover:bg-[#007a68] text-white px-8 py-4 rounded-full text-lg font-semibold transition-all shadow-lg"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
