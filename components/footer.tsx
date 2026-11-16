@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion";
 import { Instagram, Mail } from "lucide-react";
+import { ContactEmail } from "@/components/contact-email";
+import { CONTACT_EMAIL, INSTAGRAM_URL } from "@/lib/links";
 
 export function Footer() {
   return (
@@ -20,14 +22,14 @@ export function Footer() {
             </p>
           </motion.div>
           <motion.div
-            className="flex justify-start md:justify-end items-center space-x-6"
+            className="relative z-10 flex flex-wrap justify-start md:justify-end items-center gap-x-6 gap-y-4"
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
             <a
-              href="https://www.instagram.com/quetzal.lat/"
+              href={INSTAGRAM_URL}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Quetzal Computers en Instagram"
@@ -35,13 +37,14 @@ export function Footer() {
             >
               <Instagram size={28} />
             </a>
-            <a
-              href="mailto:computers.quetzal@gmail.com"
-                                  className="text-white hover:text-[#00977E] transition-colors flex items-center space-x-2"
+            <ContactEmail
+              placement="above"
+              menuClassName="left-0 md:left-auto md:right-0"
+              className="text-white hover:text-[#00977E] transition-colors flex items-center gap-2 text-left"
             >
-              <Mail size={28} />
-              <span className="text-lg">computers.quetzal@gmail.com</span>
-            </a>
+              <Mail size={28} className="shrink-0" />
+              <span className="text-base md:text-lg [overflow-wrap:anywhere]">{CONTACT_EMAIL}</span>
+            </ContactEmail>
           </motion.div>
         </div>
         <div className="text-center text-gray-500 mt-16">
