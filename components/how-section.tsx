@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import equipoColaborando from "@/public/images/equipo-colaborando.webp";
+import cajaQuetzal from "@/public/images/caja-quetzal.webp";
 import { ContactEmail } from "@/components/contact-email";
 
 export function HowSection() {
@@ -17,9 +17,9 @@ export function HowSection() {
           transition={{ duration: 0.8 }}
         >
           <Image
-            src={equipoColaborando}
+            src={cajaQuetzal}
             placeholder="blur"
-            alt="Equipo de Quetzal colaborando"
+            alt="Caja de donación con el logotipo de Quetzal"
             fill
             sizes="(min-width: 1024px) 50vw, 100vw"
             className="object-cover rounded-lg shadow-xl"

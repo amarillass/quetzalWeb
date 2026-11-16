@@ -3,7 +3,7 @@
 import Image, { type StaticImageData } from "next/image";
 import { useEffect, useRef } from "react";
 import donacionComputadora from "@/public/images/donacion-computadora.webp";
-import equipoColaborando from "@/public/images/equipo-colaborando.webp";
+import cajaQuetzal from "@/public/images/caja-quetzal.webp";
 import equipoTrabajando from "@/public/images/equipo-trabajando.webp";
 import estudiantesConComputadoras from "@/public/images/estudiantes-con-computadoras.webp";
 
@@ -12,7 +12,7 @@ const PHOTOS: { src: StaticImageData; alt: string }[] = [
   { src: equipoTrabajando, alt: "Equipo preparando las computadoras para entregar" },
   { src: donacionComputadora, alt: "Entrega de computadoras donadas" },
   { src: estudiantesConComputadoras, alt: "Estudiantes con las computadoras donadas" },
-  { src: equipoColaborando, alt: "Equipo de Quetzal colaborando" },
+  { src: cajaQuetzal, alt: "Caja de donación con el logotipo de Quetzal" },
 ];
 
 const SPEED_PX_PER_SECOND = 30;
