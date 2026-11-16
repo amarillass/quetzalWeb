@@ -36,13 +36,13 @@ function StatCard({ icon: Icon, value, label }: {
   const { count, ref } = useCountUp(numericValue);
 
   return (
-    <div ref={ref} className="glass-dark rounded-2xl p-8 text-center border border-light/10">
+    <div ref={ref} className="glass-dark rounded-2xl p-6 md:p-8 text-center border border-light/10">
       <div className="flex justify-center mb-4">
         <div className="w-16 h-16 rounded-full bg-main/10 flex items-center justify-center">
           <Icon className="w-8 h-8 text-main" />
         </div>
       </div>
-      <div className="text-5xl font-bold font-heading text-light mb-2">
+      <div className="text-4xl md:text-5xl font-bold font-heading text-light mb-2">
         {value.includes('+') && '+'}
         {count.toLocaleString()}
         {value.includes('MXN') && ' MXN'}
@@ -75,7 +75,7 @@ export function StatsSection() {
           </p>
         </motion.div>
         
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-4 md:gap-8">
           <StatCard icon={Users} value="117" label="Computadoras Donadas" />
           <StatCard icon={Download} value="+200" label="Computadoras Recibidas" />
           <StatCard icon={Diamond} value="+700,000 MXN" label="Valor Estimado" />
