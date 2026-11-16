@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
+import { DONATION_FORM_URL } from "@/lib/links";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -68,7 +69,7 @@ export function Header() {
           </nav>
           <div className="flex items-center gap-4">
             <a 
-              href="https://forms.gle/nufxiVqQL84w6x3e6"
+              href={DONATION_FORM_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 px-5 py-2 bg-main text-white rounded-full font-bold text-sm transition-all duration-300 hover:scale-105 hover:shadow-lg"

@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { Sparkles, Rocket, ArrowDown } from "lucide-react";
+import { RECRUITMENT_FORM_URL } from "@/lib/links";
 
 function Particle() {
   const ref = useRef<HTMLDivElement>(null);
@@ -129,7 +130,7 @@ export function HeroSection() {
           transition={{ duration: 1, delay: 0.6 }}
         >
           <motion.a
-            href="https://forms.gle/nufxiVqQL84w6x3e6"
+            href={RECRUITMENT_FORM_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="group px-8 py-4 bg-main text-dark rounded-full text-lg font-bold shadow-lg shadow-main/20 transition-transform duration-300"

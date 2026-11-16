@@ -15,11 +15,11 @@ export function HowSection() {
           transition={{ duration: 0.8 }}
         >
           <Image
-            src="https://images.squarespace-cdn.com/content/v1/659c1436fe4d984933d761c9/2b0a3121-542e-4acf-946b-59f90997d9d4/tempImagezp54Fv.jpg"
-            alt="Team collaboration"
-            layout="fill"
-            objectFit="cover"
-            className="rounded-lg shadow-xl"
+            src="/images/equipo-colaborando.webp"
+            alt="Equipo de Quetzal colaborando"
+            fill
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            className="object-cover rounded-lg shadow-xl"
           />
         </motion.div>
         <motion.div
