@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import estudiantesConComputadoras from "@/public/images/estudiantes-con-computadoras.webp";
 import { DONATION_FORM_URL } from "@/lib/links";
 
 export function MissionSection() {
@@ -37,14 +38,15 @@ export function MissionSection() {
           </div>
         </motion.div>
         <motion.div
-          className="relative h-96"
+          className="relative h-72 md:h-96"
           initial={{ opacity: 0, scale: 0.8 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
           <Image
-            src="/images/estudiantes-con-computadoras.webp"
+            src={estudiantesConComputadoras}
+            placeholder="blur"
             alt="Estudiantes con las computadoras donadas"
             fill
             sizes="(min-width: 1024px) 50vw, 100vw"
