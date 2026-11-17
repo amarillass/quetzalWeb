@@ -1,8 +1,9 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useMotionValue, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { Sparkles, Rocket, ArrowDown } from "lucide-react";
+import { RECRUITMENT_FORM_URL } from "@/lib/links";
 
 function Particle() {
   const ref = useRef<HTMLDivElement>(null);
@@ -56,38 +57,61 @@ function FloatingOrb() {
 }
 
 export function HeroSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  // Drift up and fade out as the hero scrolls away, measured against the hero's
+  // own height so the fade feels the same on a phone and on a large monitor.
+  // The hero is always at the top of the page, so scroll distance / height is its progress.
   const { scrollY } = useScroll();
-  const y = useTransform(scrollY, [0, 1000], [0, -150]);
-  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
-  
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  
+  const progress = (scrolled: number) => {
+    const height = sectionRef.current?.offsetHeight || 1;
+    return Math.min(scrolled / height, 1);
+  };
+  const y = useTransform(scrollY, (v) => progress(v) * -150);
+  const opacity = useTransform(scrollY, (v) => Math.max(1 - progress(v) * 2, 0));
+
+  // Fewer particles on phones, none for reduced-motion visitors. Decided after
+  // mount because the server cannot know the screen size.
+  const reduceMotion = useReducedMotion();
+  const [particleCount, setParticleCount] = useState(0);
+  const [hasMouse, setHasMouse] = useState(false);
   useEffect(() => {
+    setParticleCount(reduceMotion ? 0 : window.innerWidth < 768 ? 15 : 50);
+    setHasMouse(window.matchMedia("(hover: hover) and (pointer: fine)").matches);
+  }, [reduceMotion]);
+
+  // Cursor follower, only on devices with a mouse. Motion values move it
+  // without re-rendering the whole hero on every mouse event.
+  const cursorX = useMotionValue(0);
+  const cursorY = useMotionValue(0);
+  const [cursorShown, setCursorShown] = useState(false);
+  useEffect(() => {
+    if (!hasMouse) return;
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
+      cursorX.set(e.clientX - 10);
+      cursorY.set(e.clientY - 10);
+      setCursorShown(true);
     };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-  
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [hasMouse, cursorX, cursorY]);
+
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-dark text-light">
+    <section ref={sectionRef} id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-dark text-light">
       <div className="absolute inset-0 z-0">
-        {Array.from({ length: 50 }).map((_, i) => (
+        {Array.from({ length: particleCount }).map((_, i) => (
           <Particle key={i} />
         ))}
         <FloatingOrb />
       </div>
 
-      <motion.div
-        className="fixed w-5 h-5 bg-main rounded-full pointer-events-none z-50"
-        style={{
-          left: mousePosition.x - 10,
-          top: mousePosition.y - 10,
-        }}
-        animate={{ scale: [1, 1.2, 1] }}
-        transition={{ duration: 0.3, repeat: Infinity }}
-      />
+      {hasMouse && cursorShown && !reduceMotion && (
+        <motion.div
+          className="fixed left-0 top-0 w-5 h-5 bg-main rounded-full pointer-events-none z-50"
+          style={{ x: cursorX, y: cursorY }}
+          animate={{ scale: [1, 1.2, 1] }}
+          transition={{ duration: 0.3, repeat: Infinity }}
+        />
+      )}
       
       <motion.div
         className="relative z-20 text-center px-6 max-w-5xl mx-auto"
@@ -129,7 +153,9 @@ export function HeroSection() {
           transition={{ duration: 1, delay: 0.6 }}
         >
           <motion.a
-            href="https://forms.gle/nufxiVqQL84w6x3e6"
+            href={RECRUITMENT_FORM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="group px-8 py-4 bg-main text-dark rounded-full text-lg font-bold shadow-lg shadow-main/20 transition-transform duration-300"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -140,13 +166,14 @@ export function HeroSection() {
             </span>
           </motion.a>
           
-          <motion.button
+          <motion.a
+            href="#stats"
             className="px-8 py-4 border-2 border-light/30 text-light rounded-full text-lg font-semibold backdrop-blur-sm hover:bg-light/10 transition-colors duration-300"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
             Nuestro Impacto
-          </motion.button>
+          </motion.a>
         </motion.div>
         
         <motion.div

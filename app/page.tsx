@@ -4,34 +4,42 @@ import { GoalSection } from "@/components/goal-section";
 import { Header } from "@/components/header";
 import { HeroSection } from "@/components/hero-section";
 import { HowSection } from "@/components/how-section";
+import { MissionSection } from "@/components/mission-section";
+import { MotionProvider } from "@/components/motion-provider";
 import { ProcessSection } from "@/components/process-section";
 import { StatsSection } from "@/components/stats-section";
 
 export default function Home() {
   return (
-    <main className="bg-dark text-light min-h-screen">
-      <Header />
-      <div data-theme="dark">
-        <HeroSection />
-      </div>
-      <div data-theme="dark">
-        <StatsSection />
-      </div>
-      <div data-theme="light">
-        <GoalSection />
-      </div>
-      <div data-theme="light">
-        <HowSection />
-      </div>
-      <div data-theme="dark">
-        <ProcessSection />
-      </div>
-      <div data-theme="light">
-        <DigitalDivideSection />
-      </div>
-      <div data-theme="dark">
-        <Footer />
-      </div>
-    </main>
+    <MotionProvider>
+      {/* overflow-x-clip keeps slide-in animations from making the page wider than a phone screen */}
+      <main className="bg-dark text-light min-h-screen overflow-x-clip">
+        <Header />
+        <div data-theme="dark">
+          <HeroSection />
+        </div>
+        <div data-theme="light">
+          <MissionSection />
+        </div>
+        <div data-theme="dark">
+          <StatsSection />
+        </div>
+        <div data-theme="light">
+          <GoalSection />
+        </div>
+        <div data-theme="light">
+          <HowSection />
+        </div>
+        <div data-theme="dark">
+          <ProcessSection />
+        </div>
+        <div data-theme="light">
+          <DigitalDivideSection />
+        </div>
+        <div data-theme="dark">
+          <Footer />
+        </div>
+      </main>
+    </MotionProvider>
   );
 }
